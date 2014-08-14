@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Root element - required. Contains 1 to 15 CommandSet elements.-->
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <!-- Required (at least 1). Contains the language elements for a specific language that the app will recognize-->
+  <CommandSet xml:lang="en-US" Name="englishCommands">
+    <!-- Optional. Specifies a user friendly name, or nickname, for the app -->
+    <CommandPrefix>Diary</CommandPrefix>
+    <!-- Required. Text that displays in the What can I say? screen -->
+    <Example> new entry </Example>
+    <!-- Required (1 to 100). The app action that users initiate through speech -->
+    <Command Name="ViewEntry">
+      <!-- Required. Help text for the user -->
+      <Example>view yesterday's entry</Example>
+      <!-- Required (1 to 10). A word or phrase that the app will recognize -->
+      <ListenFor>view entry from {timeOfEntry}</ListenFor>
+      <ListenFor>view {timeOfEntry} entry</ListenFor>
+      <!-- Required (only 1). The response that the device will display or read aloud when the command is recognized -->
+      <Feedback>Searching for your diary entry...</Feedback>
+      <!-- Required (only 1). Target is optional and used in WP Silverlight apps. -->
+      <Navigate  />
+    </Command>
+    
+    <Command Name="AddEntry">
+      <Example>add new entry</Example>
+      <ListenFor>[add] new entry</ListenFor>
+      <Feedback> Let's get those feelz into your diary... </Feedback>
+      <Navigate />
+    </Command>
+    
+    <Command Name="EagerEntry">
+      <Example>Dear Diary, my day started off great</Example>
+      <ListenFor>{dictatedVoiceCommandText}</ListenFor>
+      <Feedback>Hold on a second, I want to get this down...</Feedback>
+      <Navigate />
+    </Command>
+    
+    <PhraseList Label="timeOfEntry">
+      <Item>yesterday</Item>
+      <Item>last week</Item>
+      <Item>first</Item>
+      <Item>last</Item>
+    </PhraseList>
+    
+    <PhraseTopic Label="dictatedVoiceCommandText" Scenario="Dictation">
+      <Subject>Diary Entry</Subject>
+    </PhraseTopic>
+
+  </CommandSet>
+</VoiceCommands>
